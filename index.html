@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iix OS | Official Site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    
+    <nav>
+        <div class="logo-text">iix OS <span>v1.6</span></div>
+        <ul>
+            <li><a href="#features">Özellikler</a></li>
+            <li><a href="#download" class="download-nav">İndir</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <img src="costume1(1).png" alt="iix OS Logo" class="main-logo">
+        <h1>Sınırları Zorla, Sistemi Yönet.</h1>
+        <p>İsmail tarafından geliştirilen, Debian tabanlı modern sızma testi işletim sistemi.</p>
+        <a href="#download" class="btn-main">ISO'yu İndir</a>
+    </header>
+
+    <section id="features">
+        <div class="card">
+            <h3>🚀 Hızlı ve Hafif</h3>
+            <p>XFCE masaüstü ortamı ile en eski bilgisayarlarda bile yüksek performans.</p>
+        </div>
+        <div class="card">
+            <h3>🛡️ Güvenlik Araçları</h3>
+            <p>Nmap, Aircrack-ng ve diğer temel araçlar ön yüklü olarak gelir.</p>
+        </div>
+        <div class="card">
+            <h3>🎨 Modern Tasarım</h3>
+            <p>Özel boot screen ve karanlık tema ile profesyonel görünüm.</p>
+        </div>
+    </section>
+
+    <section id="download">
+        <h2>iix OS v1.6 "Final Brand"</h2>
+        <div class="download-box">
+            <p>Dosya Boyutu: 1.2 GB</p>
+            <p>Mimari: 64-bit (amd64)</p>
+            <a href="ISO_LINKINI_BURAYA_KOY" class="btn-download">Hemen İndir (.iso)</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 iix OS Project - Created by İsmail</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) drops[i] = 1;
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
